@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_recipe_ui_app/pages/home_page.dart';
 import 'package:flutter_recipe_ui_app/theme/colors/colors.dart';
 
 /// A page that provides onboarding information for recipes.
-class RecipeOnboardingPage extends StatefulWidget {
-  /// Creates a new instance of [RecipeOnboardingPage].
-  const RecipeOnboardingPage({super.key});
+class OnboardingPage extends StatefulWidget {
+  /// Creates a new instance of [OnboardingPage].
+  const OnboardingPage({super.key});
 
   @override
-  State<RecipeOnboardingPage> createState() => _RecipeOnboardingPageState();
+  State<OnboardingPage> createState() => _OnboardingPageState();
 }
 
-class _RecipeOnboardingPageState extends State<RecipeOnboardingPage> {
+class _OnboardingPageState extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -21,7 +22,7 @@ class _RecipeOnboardingPageState extends State<RecipeOnboardingPage> {
           Container(
             height: size.height * 0.625,
             decoration: BoxDecoration(
-              gradient: gradinet,
+              gradient: gradient,
               image: const DecorationImage(
                 image: AssetImage('assets/images/background 1.png'),
                 fit: BoxFit.cover,
@@ -59,7 +60,14 @@ class _RecipeOnboardingPageState extends State<RecipeOnboardingPage> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushReplacement<void, void>(
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (_) => const HomePage(),
+                        ),
+                      );
+                    },
                     child: Container(
                       height: 55,
                       decoration: BoxDecoration(

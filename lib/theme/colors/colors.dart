@@ -18,7 +18,7 @@ const gradientColor = LinearGradient(
 );
 
 /// The color used for the search bar text.
-LinearGradient gradinet = LinearGradient(
+LinearGradient gradient = LinearGradient(
   begin: Alignment.topCenter,
   end: Alignment.bottomCenter,
   colors: [Colors.grey.shade400, Colors.grey.shade200, Colors.white],
