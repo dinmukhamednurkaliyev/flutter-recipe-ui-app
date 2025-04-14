@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_ui_app/theme/colors/colors.dart';
+import 'package:iconsax/iconsax.dart';
 
 /// A page that serves as the home screen of the app.
 class HomePage extends StatefulWidget {
@@ -20,54 +21,104 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+            headerParts(),
+            const SizedBox(height: 30),
+            searchField(),
+            const SizedBox(height: 40),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: 'Hello Dinmukhamed,\n',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        TextSpan(
-                          text: 'What do you want to eat today?',
-                          style: TextStyle(fontSize: 13, color: Colors.black45),
-                        ),
-                      ],
-                    ),
+                  Text(
+                    'Popular menus',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                   ),
-                  const Spacer(),
-                  Stack(
-                    children: [
-                      const CircleAvatar(
-                        radius: 20,
-                        backgroundColor: Colors.white,
-                        backgroundImage: NetworkImage(
-                          "https://avatars.githubusercontent.com/u/181092805?v=4",
-                        ),
-                      ),
-                      Positioned(
-                        right: 1,
-                        top: 1,
-                        child: Container(
-                          height: 9,
-                          width: 9,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.white),
-                            color: Colors.green,
-                          ),
-                        ),
-                      ),
-                    ],
+                  Text(
+                    'See all',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.green,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ],
               ),
             ),
+            const SizedBox(height: 20),
+            const SingleChildScrollView(),
           ],
         ),
+      ),
+    );
+  }
+
+  Padding searchField() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(35),
+          color: searchBarColor,
+        ),
+        child: const TextField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            prefixIcon: Icon(Iconsax.search_normal, color: Colors.black45),
+            hintText: 'Search',
+            helperStyle: TextStyle(color: Colors.black26),
+            contentPadding: EdgeInsets.symmetric(vertical: 15),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding headerParts() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        children: [
+          const Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(
+                  text: 'Hello Dinmukhamed,\n',
+                  style: TextStyle(fontSize: 16),
+                ),
+                TextSpan(
+                  text: 'What do you want to eat today?',
+                  style: TextStyle(fontSize: 13, color: Colors.black45),
+                ),
+              ],
+            ),
+          ),
+          const Spacer(),
+          Stack(
+            children: [
+              const CircleAvatar(
+                radius: 20,
+                backgroundColor: Colors.white,
+                backgroundImage: NetworkImage(
+                  "https://avatars.githubusercontent.com/u/181092805?v=4",
+                ),
+              ),
+              Positioned(
+                right: 1,
+                top: 1,
+                child: Container(
+                  height: 9,
+                  width: 9,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white),
+                    color: Colors.green,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
