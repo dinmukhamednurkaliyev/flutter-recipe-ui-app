@@ -19,27 +19,27 @@ class Category {
 List<Category> recipeCategory = [
   Category(
     name: 'Oats',
-    image: 'assets/food-recipe/oats.png',
+    image: 'assets/images/oats.png',
     color: const Color(0xffd8d8d8),
   ),
   Category(
     name: 'Cereals',
-    image: 'assets/food-recipe/cereal.png',
+    image: 'assets/images/cereal.png',
     color: const Color(0xfff4cfcc),
   ),
   Category(
     name: 'Fruits',
-    image: 'assets/food-recipe/banana.png',
+    image: 'assets/images/banana.png',
     color: const Color(0xffb8efd0),
   ),
   Category(
     name: 'Vegetable',
-    image: 'assets/food-recipe/corn.png',
+    image: 'assets/images/corn.png',
     color: const Color(0xffffe9b2),
   ),
   Category(
     name: 'Bread',
-    image: 'assets/food-recipe/bread.png',
+    image: 'assets/images/bread.png',
     color: const Color(0xffddd0a4),
   ),
 ];
