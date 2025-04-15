@@ -5,6 +5,7 @@ import 'package:flutter_recipe_ui_app/models/recipe.dart';
 import 'package:flutter_recipe_ui_app/theme/colors/colors.dart';
 import 'package:flutter_recipe_ui_app/widgets/header_parts.dart';
 import 'package:flutter_recipe_ui_app/widgets/search_field.dart';
+import 'package:flutter_recipe_ui_app/widgets/section_title.dart';
 import 'package:iconsax/iconsax.dart';
 
 /// A page that serves as the home screen of the app.
@@ -29,26 +30,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 30),
             const SearchField(),
             const SizedBox(height: 40),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Popular menus',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                  ),
-                  Text(
-                    'See all',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.green,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            const SectionTitle(title: 'Popular Menu'),
             const SizedBox(height: 20),
             popularMenuItems(),
             const SizedBox(height: 20),
@@ -91,6 +73,65 @@ class _HomePageState extends State<HomePage> {
                                 size: 18,
                               ),
                             ),
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.black45,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          recipe.name,
+                                          maxLines: 1,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            height: 0,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                      Row(
+                                        children: [
+                                          const Icon(
+                                            Icons.star,
+                                            color: Colors.amberAccent,
+                                          ),
+                                          Text(
+                                            '${recipe.rate}',
+                                            style: const TextStyle(
+                                              height: 0,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 3),
+                                  Text(
+                                    '1 Bowl (${recipe.weight}g)',
+                                    style: const TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 12,
+                                      height: 0,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 3),
+                                  Text(
+                                    '${recipe.calorie} Kkal | 25% AKL',
+                                    style: const TextStyle(
+                                      color: Colors.white70,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -99,6 +140,8 @@ class _HomePageState extends State<HomePage> {
                 }),
               ),
             ),
+            const SizedBox(height: 40),
+            const SectionTitle(title: 'Categories'),
           ],
         ),
       ),
