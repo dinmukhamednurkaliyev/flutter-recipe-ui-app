@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_ui_app/models/recipe.dart';
 import 'package:flutter_recipe_ui_app/models/recipe_category.dart';
+import 'package:flutter_recipe_ui_app/pages/items_details_page.dart';
 import 'package:flutter_recipe_ui_app/theme/colors/colors.dart';
 import 'package:flutter_recipe_ui_app/widgets/header_parts.dart';
 import 'package:flutter_recipe_ui_app/widgets/search_field.dart';
@@ -53,7 +54,16 @@ class _HomePageState extends State<HomePage> {
                             ? const EdgeInsets.only(left: 20, right: 10)
                             : const EdgeInsets.only(right: 10),
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push<dynamic>(
+                          // Add <dynamic> here
+                          context,
+                          MaterialPageRoute(
+                            builder:
+                                (_) => ItemsDetailsPage(recipeItems: recipe),
+                          ),
+                        );
+                      },
                       child: Container(
                         height: 260,
                         width: MediaQuery.of(context).size.width / 2.45,
