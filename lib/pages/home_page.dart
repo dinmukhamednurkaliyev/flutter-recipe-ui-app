@@ -20,6 +20,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
+  int selectedPage = 0;
+  List<IconData> icons = [
+    Iconsax.home1,
+    Icons.bar_chart_rounded,
+    Iconsax.heart,
+    Icons.person_outline_rounded,
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -144,7 +151,92 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 10),
             const SectionTitle(title: 'Categories'),
             categoryItems(),
+            Padding(
+              padding: const EdgeInsets.all(40),
+              child: Row(
+                children: [
+                  Container(
+                    height: 40,
+                    width: 40,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          'https://www.shutterstock.com/image-photo/young-beautiful-asian-woman-chef-600nw-2317761803.jpg',
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Hona Ci Minh',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Text(
+                        "Expert Chef",
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Color.fromRGBO(0, 0, 0, 0.1),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ],
+        ),
+      ),
+      bottomSheet: Container(
+        height: 80,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          boxShadow: [BoxShadow(color: Colors.black12, spreadRadius: 1)],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: List.generate(
+            icons.length,
+            (index) => GestureDetector(
+              onTap: () {
+                setState(() {});
+                selectedPage = index;
+              },
+              child: SizedBox(
+                height: 40,
+                width: 40,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(
+                      icons[index],
+                      color: index == selectedPage ? Colors.green : Colors.grey,
+                      size: 28,
+                    ),
+                    if (index == selectedPage)
+                      Container(
+                        height: 3,
+                        width: 30,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.green,
+                        ),
+                      )
+                    else
+                      const SizedBox(),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );
