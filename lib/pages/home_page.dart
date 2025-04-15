@@ -56,7 +56,6 @@ class _HomePageState extends State<HomePage> {
                     child: GestureDetector(
                       onTap: () {
                         Navigator.push<dynamic>(
-                          // Add <dynamic> here
                           context,
                           MaterialPageRoute(
                             builder:

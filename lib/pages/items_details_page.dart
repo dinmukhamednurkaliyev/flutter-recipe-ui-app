@@ -16,6 +16,24 @@ class ItemsDetailsPage extends StatefulWidget {
 class _ItemsDetailsPageState extends State<ItemsDetailsPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    final size = MediaQuery.of(context).size;
+    return Scaffold(
+      body: SizedBox(
+        height: size.height,
+        child: Stack(
+          children: [
+            Container(
+              height: size.height * 0.55,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(widget.recipeItems.image),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
