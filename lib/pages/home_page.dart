@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_ui_app/models/recipe.dart';
+import 'package:flutter_recipe_ui_app/models/recipe_category.dart';
 import 'package:flutter_recipe_ui_app/theme/colors/colors.dart';
 import 'package:flutter_recipe_ui_app/widgets/header_parts.dart';
 import 'package:flutter_recipe_ui_app/widgets/search_field.dart';
@@ -140,9 +141,49 @@ class _HomePageState extends State<HomePage> {
                 }),
               ),
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 10),
             const SectionTitle(title: 'Categories'),
+            categoryItems(),
           ],
+        ),
+      ),
+    );
+  }
+
+  SingleChildScrollView categoryItems() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: List.generate(
+          recipeCategory.length,
+          (index) => Padding(
+            padding:
+                index == 0
+                    ? const EdgeInsets.only(left: 20, right: 20)
+                    : const EdgeInsets.only(right: 20),
+            child: Column(
+              children: [
+                CircleAvatar(
+                  radius: 33,
+                  backgroundColor: recipeCategory[index].color,
+                  child: Image.asset(
+                    recipeCategory[index].image,
+                    height: 40,
+                    width: 40,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  recipeCategory[index].name,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
