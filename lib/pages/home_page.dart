@@ -74,6 +74,25 @@ class _HomePageState extends State<HomePage> {
                             fit: BoxFit.cover,
                           ),
                         ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(5),
+                              margin: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: recipe.fav ? Colors.red : Colors.black45,
+                              ),
+                              child: const Icon(
+                                Iconsax.heart,
+                                color: Colors.white,
+                                size: 18,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );
