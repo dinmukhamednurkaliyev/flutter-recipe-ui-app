@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_recipe_ui_app/models/ingredients.dart';
 import 'package:flutter_recipe_ui_app/models/recipe.dart';
+import 'package:flutter_recipe_ui_app/widgets/section_title.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -204,11 +206,54 @@ class _ItemsDetailsPageState extends State<ItemsDetailsPage> {
                           ),
                         ],
                       ),
+                      const SizedBox(height: 25),
+                      const SectionTitle(title: 'Ingredients'),
+                      const SizedBox(height: 20),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: List.generate(
+                            ingredients.length,
+                            (index) => Padding(
+                              padding:
+                                  index == 0
+                                      ? const EdgeInsets.only(
+                                        left: 20,
+                                        right: 20,
+                                      )
+                                      : const EdgeInsets.only(right: 20),
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 33,
+                                    backgroundColor: ingredients[index].color,
+                                    child: Image.asset(
+                                      ingredients[index].image,
+                                      height: 40,
+                                      width: 40,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Text(
+                                    ingredients[index].name,
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ),
             ),
+            const SizedBox(height: 25),
             Positioned(
               bottom: size.height * 0.5,
               child: ClipPath(

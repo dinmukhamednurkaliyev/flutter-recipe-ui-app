@@ -157,8 +157,9 @@ class _HomePageState extends State<HomePage> {
                 }),
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 40),
             const SectionTitle(title: 'Categories'),
+            const SizedBox(height: 10),
             categoryItems(),
             Padding(
               padding: const EdgeInsets.all(40),

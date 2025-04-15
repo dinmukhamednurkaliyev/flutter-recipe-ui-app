@@ -9,6 +9,7 @@ This repository contains a Flutter application developed to gain experience in U
 <p float="left">
 <img src="screenshots/Screenshot_1744697901.png" width="200"/>
 <img src="screenshots/Screenshot_1744697918.png" width="200"/>
+<img src="screenshots/Screenshot_1744705611.png" width="200"/>
 </p>
 
 ## Resources
