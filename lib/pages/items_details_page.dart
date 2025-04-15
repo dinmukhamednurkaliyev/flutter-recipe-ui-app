@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_recipe_ui_app/models/recipe.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 /// A page that displays the details of items.
 class ItemsDetailsPage extends StatefulWidget {
@@ -135,9 +137,105 @@ class _ItemsDetailsPageState extends State<ItemsDetailsPage> {
                           ),
                         ],
                       ),
+                      const SizedBox(height: 30),
+                      Row(
+                        children: [
+                          Column(
+                            children: [
+                              Text(
+                                widget.recipeItems.name,
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              const SizedBox(height: 2),
+                              Text(
+                                '1 Bowl (${widget.recipeItems.weight}g)',
+                                style: const TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.black45,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const Spacer(),
+                          const Text(
+                            'See details',
+                            style: TextStyle(
+                              color: Colors.green,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 30),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          MyProgressIndicatorValue(
+                            name: 'Carbs',
+                            amount: '${widget.recipeItems.carb} g',
+                            percentage: '(56%)',
+                            color: Colors.green,
+                            data: 0.4,
+                          ),
+                          MyProgressIndicatorValue(
+                            name: 'Fat',
+                            amount: '${widget.recipeItems.fat} g',
+                            percentage: '(72%)',
+                            color: Colors.red,
+                            data: 0.6,
+                          ),
+                          MyProgressIndicatorValue(
+                            name: 'Protein',
+                            amount: '${widget.recipeItems.protein} g',
+                            percentage: '(8%)',
+                            color: Colors.orange,
+                            data: 0.2,
+                          ),
+                          MyProgressIndicatorValue(
+                            color: Colors.green,
+                            name: 'Calories',
+                            amount: '${widget.recipeItems.calorie} kkal',
+                            percentage: '',
+                            data: 0.7,
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
+              ),
+            ),
+            Positioned(
+              bottom: size.height * 0.5,
+              child: ClipPath(
+                clipper: MyClipper(),
+                child: Container(
+                  height: 70,
+                  width: 70,
+                  decoration: const BoxDecoration(color: Colors.white),
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: size.height * 0.48,
+              right: 30,
+              child: Container(
+                padding: const EdgeInsets.all(7),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color.fromRGBO(238, 238, 238, 1),
+                      spreadRadius: 5,
+                    ),
+                  ],
+                  color: widget.recipeItems.fav ? Colors.red : Colors.black45,
+                ),
+                child: const Icon(Iconsax.heart, color: Colors.white),
               ),
             ),
           ],
@@ -145,4 +243,95 @@ class _ItemsDetailsPageState extends State<ItemsDetailsPage> {
       ),
     );
   }
+}
+
+/// A widget that displays a circular progress indicator with a name, amount, and percentage.
+class MyProgressIndicatorValue extends StatelessWidget {
+  /// Creates a new instance of [MyProgressIndicatorValue].
+  const MyProgressIndicatorValue({
+    required this.name,
+    required this.amount,
+    required this.percentage,
+    required this.color,
+    required this.data,
+    super.key,
+  });
+
+  /// The name of the item.
+  final String? name;
+
+  /// The amount of the item.
+  final String? amount;
+
+  /// The percentage of the item.
+  final String percentage;
+
+  /// The color of the item.
+  final Color color;
+
+  /// The data value of the item.
+  final double data;
+
+  @override
+  Widget build(BuildContext context) {
+    return CircularPercentIndicator(
+      radius: 20,
+      circularStrokeCap: CircularStrokeCap.round,
+      percent: data,
+      lineWidth: 7,
+      reverse: true,
+      backgroundColor: const Color.fromRGBO(0, 0, 0, 0.2),
+      animation: true,
+      restartAnimation: true,
+      progressColor: color,
+      header: Padding(
+        padding: const EdgeInsets.only(bottom: 5),
+        child: Text(
+          name!,
+          style: const TextStyle(
+            color: Color.fromRGBO(0, 0, 0, 0.6),
+            fontSize: 12,
+          ),
+        ),
+      ),
+      footer: Padding(
+        padding: const EdgeInsets.only(top: 5),
+        child: RichText(
+          text: TextSpan(
+            children: [
+              TextSpan(
+                text: '$amount ',
+                style: const TextStyle(color: Colors.black, fontSize: 12),
+              ),
+              TextSpan(
+                text: percentage,
+                style: TextStyle(
+                  color: color,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// A custom clipper that creates a specific path for the widget.
+class MyClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final path =
+        Path()
+          ..lineTo(0, size.height)
+          ..lineTo(size.width, size.height)
+          ..quadraticBezierTo(0, size.height, 0, 0)
+          ..close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
